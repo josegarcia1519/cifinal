@@ -1,0 +1,18 @@
+orbs: # declare what orbs we are going to use
+    node: circleci/node@2.0.2 # the node orb provides common node-related configuration
+
+version: 2.1 # using 2.1 provides access to orbs and other features  //header information
+
+jobs: //declaring name of the function and steps to be performed
+    test:
+        docker:
+            - image: cimg/node:16.8.0
+        steps:
+            - checkout
+            - run: npm install
+            - run: npm run test
+
+workflows:  //printout of the result of the function that was run
+    app-tests:
+        jobs:
+            - test
